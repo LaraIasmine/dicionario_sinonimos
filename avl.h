@@ -1,13 +1,14 @@
 /* avl.h
  * Definição do TAD para representar uma árvore AVL e protótipo
- * de suas operações.
+ * de suas operações para manipulação de um dicionário de sinonimos
  *
  * AUTORES
-* Lara Iasmine P Fabiano
-* Gustavo Lino Barbosa
-* Victor Filippi
-* Vitor Tuler
-* 13/10/2021
+ * Lara Iasmine P Fabiano - 7986907
+ * Gustavo Lino Barbosa - 9656506
+ * Victor Filippi - 5148846
+ * Vitor Tuler - 4736500
+ * 
+ * 13/10/2021
  */
 
 #ifndef _AVL_H
@@ -43,8 +44,8 @@ void save_tree(avl_tree t, FILE * arq);
 
 /*
  * Verifica se a palavra x já ocorreu na árvore AVL t; 
- * caso afirmativo, seu sinonimo é atualizado pelo novo valor;
- * caso contrário, x e seu sinonimo são inseridos
+ * caso afirmativo, seu sinonimo s é atualizado pelo novo valor;
+ * caso contrário, x e s são inseridos
  * em t e h sinaliza que houve um aumento da
  * altura de t.
  */
@@ -56,18 +57,14 @@ void avl_search(avl_tree * t, char * x, char * s, bool * h);
 void avl_sub(avl_tree * t, char * x, char * s, bool * h);
 
 /* Procura o sinonimo da palavra x na arvore AVL t;
- *caso true, devolve o sinonimo da palavra
- *caso false, devolve negativo.
+ * Se encontrado ele printa o sinonimo de x
  */
 void avl_sin(avl_tree * t, char * x, bool * h);
-
-
 
 /* 
  * Faz uma rotação para a direita na árvore AVL t. 
  */
 void rotacao_dir(avl_tree * t);
-
 
 /*
  * Faz uma rotação para a esquerda na árvore AVL t.
@@ -81,7 +78,6 @@ void rotacao_esq(avl_tree *);
  * nada é feito e a função devolve falso.
  */
 bool delete(avl_tree * t, char * x, bool * h);
-
 
 /*
  * Faz o balanceamento da árvore AVL t após uma remoção 

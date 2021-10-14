@@ -1,5 +1,7 @@
 /**
 * avl_dictionary.c
+* Trabalho Pratico I - Estrutura de Dados II
+* Prof Me. Ciro Cirne Trindade 
 *
 * Descrição: este programa cria um arquivo de dicionário de 
 * palavras com seus sinonimos utilizando uma árvore AVL
@@ -7,10 +9,10 @@
 *
 *
 *        AUTORES
-* Lara Iasmine P Fabiano
-* Gustavo Lino Barbosa
-* Victor Filippi
-* Vitor Tuler
+* Lara Iasmine P Fabiano - 7986907
+* Gustavo Lino Barbosa - 9656506
+* Victor Filippi - 5148846
+* Vitor Tuler - 4736500
 * 13/10/2021
 **/
 
@@ -66,7 +68,6 @@ int main() {
         avl_search(&t, palavra, sinonimo, &h);
     }
     fclose(arq);
-    print_tree(t);
     do {
         op = menu(opcoes, sizeof(opcoes) / sizeof(char *));
 
@@ -97,7 +98,6 @@ int main() {
                 scanf(" %30[^\n]", palavra_n);
                 if (delete(&t, palavra_n, &h)) {
                     printf("Remocao realizada com sucesso!\n");
-                    print_tree(t);
                 }
                 else {
                     printf("%s nao esta' na arvore\n", palavra_n);
@@ -105,21 +105,24 @@ int main() {
                 break;
             case PRINT: 
                 print_tree(t);
-                
+                break;
             case SAIR: 
+                printf("\n\n\tObrigado por utilizar o Dicionario de Sinonimos!");
+                printf("\n\tNao esqueca de conferir seu dicionario atualizado, 'dicionario.txt'");
+                printf("\n\n\t\t\t\t\t\t\tAte' a proxima! :D");
                 break;
             default: 
                     printf("\n\tOpcao invalida\n");
         }
     } while (op != 0);
 
-    //CRIAR UM ARQUIVO DICIONARIO COM AS PALAVRAS DA ARVORE
+    //Abre o arquivo para escrita nele
     if ((arq = fopen(FILENAME, "w")) == NULL) {
         fprintf(stderr, "Erro na abertura do arquivo %s\n", FILENAME);
         return 1;
     }
 
-    // //escreve no arquivo
+    //Escreve no arquivo os dados da Árvore 
     save_tree(t, arq);
     fclose(arq);
     return 0;
@@ -128,7 +131,8 @@ int main() {
 int menu(char * opcoes[], int num) 
 {   
     int i, op;
-    printf("\n\n\t\tDicionario de Sinonimos\n\n");
+    printf("\n\n\t\t\tBEM VINDO!");
+    printf("\n\t\tDicionario de Sinonimos");
         for (i = 0; i < num-1; i++) {
             printf("\t%2d - %s\n", i + 1, opcoes[i]);
         }
